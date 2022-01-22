@@ -76,6 +76,6 @@ public class Book extends PaperResource
 
 	public String pretty()
 	{
-		return String.format("Type: %s\nKind: %s\nName: %s\nAuthor: %s\nPublisher: %s\nRelease number: %d\nPage count: %s", objName(), getKind(), getName(), author, getPublisher(), releaseNumber, getPages());
+		return String.format("Type: %s\nKind: %s\nName: %s\nAuthor: %s\nPublisher: %s\nRelease number: %d\nPublication date: %s\nPage count: %s", objName(), getKind(), getName(), author, getPublisher(), releaseNumber, getPublicationString(),getPages());
 	}
 }

@@ -1,6 +1,7 @@
 package classes;
 
 import java.util.Calendar;
+import java.text.SimpleDateFormat;
 
 public abstract class EduResource extends DbObject
 {
@@ -20,6 +21,12 @@ public abstract class EduResource extends DbObject
 	public Calendar getPublicationDate()
 	{
 		return publicationDate;
+	}
+
+	public String getPublicationString()
+	{
+		SimpleDateFormat fmt = new SimpleDateFormat("dd MMM yyyy");
+		return fmt.format(publicationDate.getTime());
 	}
 
 	public void addToClient(Client which) throws Exception

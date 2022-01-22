@@ -16,6 +16,6 @@ class DbApp
 		Storage db = new Storage();
 		db.addItem(b1);
 		Book xd = (Book) db.getItem(0);
-		System.out.println(xd.getContent());
+		System.out.println(xd.pretty());
 	}
 }
