@@ -1,8 +1,8 @@
 package classes;
 
-import java.util.*;
+import java.util.Date;
 
-public class EduResource extends DbObject
+public abstract class EduResource extends DbObject
 {
 	Date publicationDate;
 
@@ -20,5 +20,17 @@ public class EduResource extends DbObject
 	public Date getPublicationDate()
 	{
 		return publicationDate;
+	}
+
+	public void addToClient(Client which) throws Exception
+	{
+		try
+		{
+			which.addItem(this);
+		}
+		catch(Exception e)
+		{
+			throw new Exception("Client already has this resource");
+		}
 	}
 }

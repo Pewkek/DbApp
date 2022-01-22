@@ -30,4 +30,8 @@ public abstract class DbObject
 	{
 		return name;
 	}
+
+	public abstract String pretty();
+
+	public abstract String objName();
 }

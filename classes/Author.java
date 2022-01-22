@@ -6,4 +6,9 @@ public class Author extends Person
 	{
 		super(id, name, surname);
 	}
+
+	public String objName()
+	{
+		return "Author";
+	}
 }
