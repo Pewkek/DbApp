@@ -1,9 +1,8 @@
 package classes;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
-public class Client extends Person
+public class Client extends Person implements IStorage<EduResource>
 {
 	ArrayList<EduResource> activeResources;
 
@@ -14,34 +13,22 @@ public class Client extends Person
 
 	public void addItem(EduResource toAdd) throws Exception
 	{
-		Iterator<EduResource> it = activeResources.iterator();
-
-		while(it.hasNext())
-		{
-			EduResource res = it.next();
-			if(res.getId() == toAdd.getId())
-			{
-				throw new Exception("Item already exists");
-			}
-		}
-
-		activeResources.add(toAdd);
+		storageAdd(toAdd, activeResources);
 	}
 
 	public void removeItem(EduResource toRemove) throws Exception
 	{
-		Iterator<EduResource> it = activeResources.iterator();
+		storageRemove(toRemove, activeResources);
+	}
 
-		while(it.hasNext())
-		{
-			EduResource res = it.next();
-			if(res.getId() == toRemove.getId())
-			{
-				it.remove();
-				return;
-			}
-		}
-		throw new Exception("Item does not exist");
+	public EduResource getItem(int idx) throws IndexOutOfBoundsException
+	{
+		return activeResources.get(idx);
+	}
+
+	public EduResource getById(int idx)
+	{
+		return storageGetId(idx, activeResources);
 	}
 
 	public int itemCount()

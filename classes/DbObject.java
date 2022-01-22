@@ -32,6 +32,9 @@ public abstract class DbObject
 	}
 
 	public abstract String pretty();
-
 	public abstract String objName();
+	public String className()
+	{
+		return "classes." + objName();
+	}
 }

@@ -1,6 +1,6 @@
 package classes;
 
-import java.util.Date;
+import java.util.Calendar;
 
 public class Book extends PaperResource
 {
@@ -26,11 +26,12 @@ public class Book extends PaperResource
 	private int releaseNumber;
 	private Kind kind;
 
-	Book(int id, String name, Author author, int releaseNumber, Kind kind, int pages, Publisher publisher, Date publicationDate, String content)
+	public Book(int id, String name, Author author, int releaseNumber, Kind kind, int pages, Publisher publisher, Calendar publicationDate, String content)
 	{
 		super(id, name, pages, publisher, publicationDate, content);
 		this.author = author;
 		this.releaseNumber = releaseNumber;
+		this.kind = kind;
 	}
 
 	public void setAuthor(Author author)
@@ -75,6 +76,6 @@ public class Book extends PaperResource
 
 	public String pretty()
 	{
-		return String.format("Type: %s\nKind: %s\nName: %s\nAuthor: %s\nPublisher: %s\n Release number: %d\n Page count: %s", objName(), getKind(), author, getPublisher(), releaseNumber, getPages());
+		return String.format("Type: %s\nKind: %s\nName: %s\nAuthor: %s\nPublisher: %s\nRelease number: %d\nPage count: %s", objName(), getKind(), getName(), author, getPublisher(), releaseNumber, getPages());
 	}
 }

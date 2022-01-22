@@ -1,13 +1,13 @@
 package classes;
 
-import java.util.Date;
+import java.util.Calendar;
 
 public class Course extends EduResource
 {
 	private Author author;
 	private float duration;
 
-	Course(int id, String name, Author author, float duration, Date publicationDate)
+	Course(int id, String name, Author author, float duration, Calendar publicationDate)
 	{
 		super(id, name, publicationDate);
 		this.author = author;

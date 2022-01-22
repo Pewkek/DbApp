@@ -1,23 +1,23 @@
 package classes;
 
-import java.util.Date;
+import java.util.Calendar;
 
 public abstract class EduResource extends DbObject
 {
-	Date publicationDate;
+	Calendar publicationDate;
 
-	EduResource(int id, String name, Date publicationDate)
+	EduResource(int id, String name, Calendar publicationDate)
 	{
 		super(id, name);
 		this.publicationDate = publicationDate;
 	}
 
-	public void setPublicationDate(Date publicationDate)
+	public void setPublicationDate(Calendar publicationDate)
 	{
 		this.publicationDate = publicationDate;
 	}
 
-	public Date getPublicationDate()
+	public Calendar getPublicationDate()
 	{
 		return publicationDate;
 	}

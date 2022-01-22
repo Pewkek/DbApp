@@ -1,6 +1,6 @@
 package classes;
 
-import java.util.Date;
+import java.util.Calendar;
 
 public abstract class PaperResource extends EduResource
 {
@@ -8,11 +8,12 @@ public abstract class PaperResource extends EduResource
 	private Publisher publisher;
 	private String content;
 	
-	PaperResource(int id, String name, int pages, Publisher publisher, Date publicationDate, String content)
+	PaperResource(int id, String name, int pages, Publisher publisher, Calendar publicationDate, String content)
 	{
 		super(id, name, publicationDate);
 		this.publisher = publisher;
 		this.content = content;
+		this.pages = pages;
 	}
 
 	public Publisher getPublisher()
