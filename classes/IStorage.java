@@ -23,21 +23,20 @@ public interface IStorage<T>
 		storage.add(toAdd);
 	}
 
-	default void storageRemove(T toRemove, ArrayList<T> storage) throws NoSuchElementException
+	default void storageRemoveId(int idx, ArrayList<T> storage) throws NoSuchElementException
 	{
 		Iterator<DbObject> it = (Iterator<DbObject>) storage.iterator();
-		DbObject toRemoveBase = (DbObject) toRemove;
 
 		while(it.hasNext())
 		{
 			DbObject res = it.next();
-			if(toRemoveBase.getId() == res.getId())
+			if(res.getId() == idx)
 			{
 				it.remove();
 				return;
 			}
 		}
-		throw new NoSuchElementException("Item does not exist");
+		throw new NoSuchElementException("Item with such ID does not exist");
 	}
 
 	default T storageGetId(int idx, ArrayList<T> storage) throws NoSuchElementException
@@ -56,8 +55,9 @@ public interface IStorage<T>
 		throw new NoSuchElementException("Item does not exist");
 	}
 
-	public void addItem(T toAdd) throws Exception;
-	public void removeItem(T toRemove) throws Exception;
+	public void addItem(T toAdd);
+	public void removeItem(int idx) throws IndexOutOfBoundsException;
+	public void removeItemById(int idx) throws NoSuchElementException;
 	public T getItem(int idx) throws IndexOutOfBoundsException;
 	public T getById(int idx) throws NoSuchElementException;
 	public int itemCount();

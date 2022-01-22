@@ -1,24 +1,51 @@
 package classes;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 public class Client extends Person implements IStorage<EduResource>
 {
-	ArrayList<EduResource> activeResources;
+	ArrayList<EduResource> activeResources = new ArrayList<EduResource>();
 
 	Client(int id, String name, String surname)
 	{
 		super(id, name, surname);
 	}
 
-	public void addItem(EduResource toAdd) throws Exception
+	public void addItem(EduResource toAdd)
 	{
-		storageAdd(toAdd, activeResources);
+		try
+		{
+			storageAdd(toAdd, activeResources);
+		}
+		catch(IllegalArgumentException e)
+		{
+			System.err.println("Error: Item already exists");
+		}
 	}
 
-	public void removeItem(EduResource toRemove) throws Exception
+	public void removeItem(int idx)
 	{
-		storageRemove(toRemove, activeResources);
+		try
+		{
+			activeResources.remove(idx);
+		}
+		catch(IndexOutOfBoundsException e)
+		{
+			System.out.println("Error: Can't remove item: index out of bounds");
+		}
+	}
+
+	public void removeItemById(int idx)
+	{
+		try
+		{
+			storageRemoveId(idx, activeResources);
+		}
+		catch(NoSuchElementException e)
+		{
+			System.err.println(e);
+		}
 	}
 
 	public EduResource getItem(int idx) throws IndexOutOfBoundsException
