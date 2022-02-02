@@ -1,5 +1,6 @@
 package classes;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
@@ -10,6 +11,21 @@ public class Client extends Person implements IStorage<EduResource>
 	Client(int id, String name, String surname)
 	{
 		super(id, name, surname);
+	}
+
+	public static DbObject fromUserInput()
+	{
+		Console con = System.console();
+
+		String name = "N/A";
+		String surname = "N/A";
+
+		name = con.readLine("Podaj imię: ");
+		surname = con.readLine("Podaj nazwisko: ");
+		Client ret = new Client(-1, name, surname);
+		System.out.println("\nUtworzono Client:\n"+ret.pretty());
+
+		return (DbObject) ret;
 	}
 
 	public void addItem(EduResource toAdd)

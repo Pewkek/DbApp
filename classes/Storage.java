@@ -1,16 +1,18 @@
 package classes;
 
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
 
 public class Storage implements IStorage<DbObject>
 {
 	private ArrayList<DbObject> data = new ArrayList<DbObject>();
+	private int idCounter = 0;
 	public void addItem(DbObject toAdd)
 	{
 		try
 		{
+			toAdd.setId(idCounter);
 			storageAdd(toAdd, data);
+			idCounter++;
 		}
 		catch(IllegalArgumentException e)
 		{
@@ -20,52 +22,22 @@ public class Storage implements IStorage<DbObject>
 
 	public void removeItem(int idx)
 	{
-		try
-		{
-			data.remove(idx);
-		}
-		catch(IndexOutOfBoundsException e)
-		{
-			System.out.println("Error: Can't remove item: index out of bounds");
-		}
+		data.remove(idx);
 	}
 
 	public void removeItemById(int idx)
 	{
-		try
-		{
-			storageRemoveId(idx, data);
-		}
-		catch(NoSuchElementException e)
-		{
-			System.err.println(e);
-		}
+		storageRemoveId(idx, data);
 	}
 
 	public DbObject getItem(int idx)
 	{
-		try
-		{
-			return data.get(idx);
-		}
-		catch(IndexOutOfBoundsException e)
-		{
-			System.err.println("Error: Can't get item: index out of bounds");
-			return null;
-		}
+		return data.get(idx);
 	}
 
 	public DbObject getById(int idx)
 	{
-		try
-		{
-			return storageGetId(idx, data);
-		}
-		catch(NoSuchElementException e)
-		{
-			System.err.println("Error: Item with such ID does not exist");
-			return null;
-		}
+		return storageGetId(idx, data);
 	}
 
 	public int itemCount()

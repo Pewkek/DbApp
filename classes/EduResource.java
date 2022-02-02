@@ -1,32 +1,23 @@
 package classes;
 
-import java.util.Calendar;
-import java.text.SimpleDateFormat;
-
 public abstract class EduResource extends DbObject
 {
-	Calendar publicationDate;
+	String publicationDate;
 
-	EduResource(int id, String name, Calendar publicationDate)
+	EduResource(int id, String name, String publicationDate)
 	{
 		super(id, name);
 		this.publicationDate = publicationDate;
 	}
 
-	public void setPublicationDate(Calendar publicationDate)
+	public void setPublicationDate(String publicationDate)
 	{
 		this.publicationDate = publicationDate;
 	}
 
-	public Calendar getPublicationDate()
+	public String getPublicationDate()
 	{
 		return publicationDate;
-	}
-
-	public String getPublicationString()
-	{
-		SimpleDateFormat fmt = new SimpleDateFormat("dd MMM yyyy");
-		return fmt.format(publicationDate.getTime());
 	}
 
 	public void addToClient(Client which) throws Exception

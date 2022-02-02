@@ -1,4 +1,5 @@
 package classes;
+import java.io.*;
 
 public class Publisher extends DbObject
 {
@@ -7,6 +8,21 @@ public class Publisher extends DbObject
 	{
 		super(id, name);
 		this.address = address;
+	}
+
+	public static DbObject fromUserInput()
+	{
+		Console con = System.console();
+
+		String name = "N/A";
+		String address = "N/A";
+
+		name = con.readLine("Podaj nazwę: ");
+		address = con.readLine("Podaj adres: ");
+		Publisher ret = new Publisher(-1, name, address);
+		System.out.println("\nUtworzono Publisher"+":\n"+ret.pretty());
+
+		return (DbObject) ret;
 	}
 
 	public void setAddress(String address)
